@@ -21,7 +21,7 @@ class Memory{
      * @param line : 현재 넣으려는 데이터 값
      * @param tag : 현재 sets 배열에 넣을 위치
      */
-    public void setSets(int tag, CacheLine line) {
+    public void setSets(int tag, CacheLine line) throws Exception{
 
         if(this.sets.length < tag){
             System.err.println("Error: set number out of range");
@@ -56,7 +56,7 @@ class Memory{
      *             이때 값이 이미 해당 tag에 존재한다면 quadratic probing을 활용합니다.
      * 2-way set association을 고려하지 않았습니다.
      */
-    public void write(CacheLine line){
+    public void write(CacheLine line) throws Exception {
         if(!line.isValid()){
             System.err.println("Invalid CacheLine");
             return;
@@ -64,21 +64,6 @@ class Memory{
 
         CacheLine currentLine = this.read(line.getTag());
 
-        if(currentLine == null){
-            setSets(line.getTag(), line);
-            return;
-        }
-
-        //Quadratic Probing
-
-        for(int i = 1; i < this.sets.length; i++){
-            // 최대 순회 횟수는 잘 모르겠어서 우선 sets의 전체 길이로 잡음
-            CacheLine candidate = read((currentLine.getTag() +i*i) % this.sets.length);
-            if(candidate != null){
-                setSets((currentLine.getTag() +i*i) % this.sets.length, currentLine);
-                break;
-            }
-
-        }
+        setSets(line.getTag(), line);
     }
 }
