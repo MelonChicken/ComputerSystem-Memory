@@ -26,7 +26,7 @@ public class Main {
 		
 		loadPrices("python/data/uk_prices_8000_key_price.csv", 8000);
 		
-		int[] tests = randomSamples();
+		int[] tests = randomSamples(1000, 100);
 		
 		for (int addr : tests) {
 			double value = access(addr);
@@ -76,12 +76,12 @@ public class Main {
         System.out.println("Total hits: " + totalHits+" Total misses: " + totalMisses+" Total Hit Ratio: "+(1.0*totalHits/totalCount));
 	}
 
-    private static int[] randomSamples() {
+    private static int[] randomSamples(int sampleSize, int sampleRange) {
         Random random = new Random();
-        int[] result = new int[100];
+        int[] result = new int[sampleSize]; //sample size
 
-        for (int i = 0; i < 100; i++) {
-            result[i] = random.nextInt(8000);
+        for (int i = 0; i < result.length; i++) {
+            result[i] = random.nextInt(sampleRange);
         }
         return result;
     }
