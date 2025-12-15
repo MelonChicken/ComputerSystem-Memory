@@ -44,7 +44,7 @@ public class Main {
 			return dataset[address];
 		} else {
 			// 몰라 
-			return 0;
+			return DataStore.get(address);
 		}
 	}
 	
