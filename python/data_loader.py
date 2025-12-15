@@ -1,5 +1,18 @@
+import os
 import pandas as pd
-import pyarrow, fsspec, huggingface_hub
-# Login using e.g. `huggingface-cli login` to access this dataset
-df = pd.read_parquet("hf://datasets/Rif-SQL/time-series-uk-retail-supermarket-price-data/base_retail_gb_snappy.parquet")
-df.to_csv("data/data.csv", index=False)
+import pyarrow
+import fsspec
+import huggingface_hub
+
+SRC = "hf://datasets/Rif-SQL/time-series-uk-retail-supermarket-price-data/base_retail_gb_snappy.parquet"
+OUT_DIR = "data"
+OUT_PATH = os.path.join(OUT_DIR, "data.csv")
+
+os.makedirs(OUT_DIR, exist_ok=True)
+
+df = pd.read_parquet(SRC)
+
+df = df.head(8000) # 8000개만 추출
+df.to_csv(OUT_PATH, index=False)
+
+print("saved:", OUT_PATH, "shape:", df.shape)
