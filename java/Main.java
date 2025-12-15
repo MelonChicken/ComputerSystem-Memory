@@ -23,7 +23,7 @@ public class Main {
 	
 	
 	public static void main(String [] args) throws Exception {
-		// 예시 데이터셋 설정
+		
 		loadPrices("python/data/uk_prices_8000_key_price.csv", 8000);
 		
 		int[] tests = {5, 133, 5, 261, 5, 133, 389, 5, 133};
@@ -68,7 +68,7 @@ public class Main {
 		System.out.println("L1 hits: " + l1Cache.getHit() + ", " + "L1 misses: " + l1Cache.getMiss());
 		System.out.println("L2 hits: " + l2Cache.getHit() + ", " + "L2 misses: " + l2Cache.getMiss());
 		System.out.println("L3 hits: " + l3Cache.getHit() + ", " + "L3 misses: " + l3Cache.getMiss());
-		System.out.println("L3 hits: " + l4Cache.getHit() + ", " + "L3 misses: " + l4Cache.getMiss());
+		System.out.println("L4 hits: " + l4Cache.getHit() + ", " + "L4 misses: " + l4Cache.getMiss());
 		
 	}
 }
